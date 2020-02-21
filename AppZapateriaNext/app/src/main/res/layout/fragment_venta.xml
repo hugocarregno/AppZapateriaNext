@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/etId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="id"
+        android:inputType="number"
+        android:visibility="gone"
+        android:enabled="false"
+         />
+    <TextView
+        android:id="@+id/tvEmpleadoId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="128dp"
+        android:text="empleadoid"
+        android:visibility="gone"
+         />
+    <TextView
+        android:id="@+id/tvFecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fecha"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"/>
+    <EditText
+        android:id="@+id/etFecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="fecha"
+        android:visibility="gone"
+        android:inputType="date"
+        android:focusable="false"
+        android:clickable="true"
+        android:maxLines="1"
+         />
+    <TextView
+        android:id="@+id/tvTiempo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hora"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"/>
+    <EditText
+        android:id="@+id/etTiempo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="tiempo"
+        android:visibility="gone"
+        android:inputType="time"
+        android:focusable="false"
+        android:clickable="true"
+        android:maxLines="1"
+         />
+    <TextView
+        android:id="@+id/tvCliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DNI Cliente"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"/>
+    <EditText
+        android:id="@+id/etCliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:visibility="gone"
+        android:inputType="number"
+        android:text="Cliente"
+         />
+
+    <TextView
+        android:id="@+id/tvMontoTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Monto Total"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/etMontoTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="Monto Total"
+        android:textColor="#8BC34A"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnNuevo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/colorMarronLow"
+        android:text="Nuevo"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/btnBorrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorMarronMedium"
+        android:text="Borrar"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnModificar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorMarronMedium"
+        android:text="Modificar"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorMarronMedium"
+        android:hapticFeedbackEnabled="false"
+        android:text="Guardar"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/listadoVentas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+
+    </ListView>
+</LinearLayout>

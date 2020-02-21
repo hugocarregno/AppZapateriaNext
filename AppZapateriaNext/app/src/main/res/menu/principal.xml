@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_carrito"
+        android:orderInCategory="100"
+        android:title="@string/action_carrito"
+        android:icon="@drawable/ic_cart"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/action_empleado"
+        android:orderInCategory="100"
+        android:title="@string/menu_empleado"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/action_cerrar"
+        android:orderInCategory="100"
+        android:title="@string/menu_cerrarSesion"
+        app:showAsAction="never"
+        />
+
+
+</menu>

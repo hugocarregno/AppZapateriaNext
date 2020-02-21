@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_zapatilla"
+            android:icon="@drawable/ic_shoes"
+            android:title="@string/menu_zapatilla" />
+        <item
+            android:id="@+id/nav_detalleVenta"
+            android:icon="@drawable/ic_cart"
+            android:title="@string/menu_detalleVenta" />
+        <item
+            android:id="@+id/nav_venta"
+            android:icon="@drawable/ic_sales"
+            android:title="@string/menu_venta" />
+    </group>
+
+    <item android:title="Cuenta">
+        <menu>
+            <item
+                android:id="@+id/nav_empleado"
+                android:icon="@drawable/ic_person"
+                android:title="@string/menu_empleado" />
+            <item
+                android:id="@+id/nav_cerrarSesion"
+                android:icon="@drawable/ic_exit_to_app"
+                android:title="@string/menu_cerrarSesion" />
+        </menu>
+    </item>
+
+</menu>

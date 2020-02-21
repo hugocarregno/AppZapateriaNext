@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_empleado">
+
+    <fragment
+        android:id="@+id/nav_zapatilla"
+        android:name="com.example.appzapaterianext.ui.zapatilla.ZapatillaFragment"
+        android:label="@string/menu_zapatilla"
+        tools:layout="@layout/fragment_zapatilla" />
+
+    <fragment
+        android:id="@+id/nav_empleado"
+        android:name="com.example.appzapaterianext.ui.empleado.EmpleadoFragment"
+        android:label="@string/menu_empleado"
+        tools:layout="@layout/fragment_empleado" />
+
+    <fragment
+        android:id="@+id/nav_detalleVenta"
+        android:name="com.example.appzapaterianext.ui.detalleVenta.DetalleVentaFragment"
+        android:label="@string/menu_detalleVenta"
+        tools:layout="@layout/fragment_detalleventa" />
+
+    <fragment
+        android:id="@+id/nav_venta"
+        android:name="com.example.appzapaterianext.ui.venta.VentaFragment"
+        android:label="@string/menu_venta"
+        tools:layout="@layout/fragment_venta" />
+
+    <fragment
+        android:id="@+id/nav_cerrarSesion"
+        android:name="com.example.appzapaterianext.ui.cerrar.CerrrarsesionFragment"
+        android:label="@string/menu_cerrarSesion"
+        tools:layout="@layout/fragment_cerrarsesion" />
+</navigation>
