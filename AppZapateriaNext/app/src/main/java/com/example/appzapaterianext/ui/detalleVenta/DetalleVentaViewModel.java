@@ -35,7 +35,7 @@ public class DetalleVentaViewModel extends AndroidViewModel {
         }
         return listaDetalleVenta;
     }
-
+/*
     public void altaDetalleVentasVM(List<DetalleVenta> listado){
 
         SharedPreferences sp = context.getSharedPreferences("token", 0);
@@ -55,5 +55,5 @@ public class DetalleVentaViewModel extends AndroidViewModel {
             }
         });
     }
-
+*/
 }

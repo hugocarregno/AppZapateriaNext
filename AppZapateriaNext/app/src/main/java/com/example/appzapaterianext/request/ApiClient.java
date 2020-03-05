@@ -63,13 +63,12 @@ public class ApiClient {
         @DELETE("Zapatillas/{id}")
         Call<Zapatilla> deleteZapatilla(@Header("Authorization") String token, @Path("id") int id);
 
-        @POST("DetalleVentas")
-        Call<String> altaDetalleVentas(@Header("Authorization") String token, @Body List<DetalleVenta> listadoDetalle);
-
 
 
         @GET("Ventas")
         Call<List<Venta>> getVentas(@Header("Authorization") String token);
+        @POST("Ventas")
+        Call<Venta> altaVenta(@Header("Authorization") String token, @Body Venta venta);
         @PUT("Ventas/{id}")
         Call<Venta> putVenta(@Header("Authorization") String token, @Path("id") int id, @Body Venta venta);
         @DELETE("Ventas/{id}")

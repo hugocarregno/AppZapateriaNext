@@ -22,6 +22,8 @@ import com.example.appzapaterianext.models.DetalleVenta;
 import com.example.appzapaterianext.models.Empleado;
 import com.example.appzapaterianext.models.Venta;
 import com.example.appzapaterianext.ui.inicio.Principal;
+import com.example.appzapaterianext.ui.venta.VentaFragment;
+import com.example.appzapaterianext.ui.venta.VentaViewModel;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,6 +32,7 @@ import java.util.List;
 public class DetalleVentaFragment extends Fragment {
 
     private DetalleVentaViewModel detalleVentaViewModel;
+    private VentaViewModel ventaViewModel;
     private ArrayList<DetalleVenta> carrito;
     private ListView lvCarrito;
     private Button btnVenta, btnVaciarCarrito;
@@ -44,6 +47,7 @@ public class DetalleVentaFragment extends Fragment {
                              final ViewGroup container, Bundle savedInstanceState) {
         detalleVentaViewModel =
                 ViewModelProviders.of(this).get(DetalleVentaViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_detalleventa, container, false);
 
         etDniCliente = root.findViewById(R.id.etDniCliente);
@@ -102,8 +106,9 @@ public class DetalleVentaFragment extends Fragment {
                         detalleVenta.getZapatilla().setStock(detalleVenta.getZapatilla().getStock()-detalleVenta.getCantidad());
                         listadoDetalle.add(detalleVenta);
                     }
-
-                    detalleVentaViewModel.altaDetalleVentasVM(listadoDetalle);
+                    venta.setZapatillas(listadoDetalle);
+                    //ventaViewModel.altaVentaVM(venta);
+                    //detalleVentaViewModel.altaDetalleVentasVM(listadoDetalle);
                     //eliminar sp
                     carrito=null;
                     ((Principal) getActivity()).saveArrayList(carrito, "carro");

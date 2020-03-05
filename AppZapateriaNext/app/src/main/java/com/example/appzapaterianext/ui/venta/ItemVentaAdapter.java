@@ -37,6 +37,8 @@ public class ItemVentaAdapter extends ArrayAdapter<Venta> {
         this.btnModificar = modificar;
     }
 
+
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

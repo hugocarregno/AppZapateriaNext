@@ -75,6 +75,26 @@ public class VentaViewModel extends AndroidViewModel {
         });
     }
 
+    public void altaVentaVM(Venta venta){
+
+        SharedPreferences sp = context.getSharedPreferences("token", 0);
+        String accessToken = sp.getString("token", "");
+        Call<Venta> altaVenta = ApiClient.getMyApiClient().altaVenta(accessToken, venta);
+        altaVenta.enqueue(new Callback<Venta>() {
+            @Override
+            public void onResponse(Call<Venta> call, Response<Venta> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(context, "Se dio de alta una Venta", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Venta> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 
     public void actualizarVentaVM(Venta venta){
         Call<Venta> actualizarVenta = ApiClient.getMyApiClient().putVenta(sp.getString("token", ""), venta.getId(), venta);

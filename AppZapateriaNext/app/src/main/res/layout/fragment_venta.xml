@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <ListView
+        android:id="@+id/listadoVentas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+
+    </ListView>
 
     <EditText
         android:id="@+id/etId"
@@ -101,16 +111,6 @@
         android:visibility="gone" />
 
     <Button
-        android:id="@+id/btnNuevo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:background="@color/colorMarronLow"
-        android:text="Nuevo"
-        android:visibility="visible" />
-
-    <Button
         android:id="@+id/btnBorrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -141,11 +141,6 @@
         android:text="Guardar"
         android:visibility="gone" />
 
-    <ListView
-        android:id="@+id/listadoVentas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="visible">
+    <include layout="@layout/fragment_detalleventa" />
 
-    </ListView>
 </LinearLayout>

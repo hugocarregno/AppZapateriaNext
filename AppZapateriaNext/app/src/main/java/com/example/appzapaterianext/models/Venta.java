@@ -1,6 +1,7 @@
 package com.example.appzapaterianext.models;
 
 import java.util.Date;
+import java.util.List;
 
 public class Venta {
     private int id;
@@ -10,20 +11,12 @@ public class Venta {
     private Byte estado;
     private int idEmpleado;
     private Empleado empleado;
+    private List<DetalleVenta> detalles;
 
     public Venta() {
     }
 
-    public Venta(int id, Date fecha, double montoTotal, String cliente, Byte estado, int idEmpleado) {
-        this.id = id;
-        this.fecha = fecha;
-        this.montoTotal = montoTotal;
-        this.cliente = cliente;
-        this.estado = estado;
-        this.idEmpleado = idEmpleado;
-    }
-
-    public Venta(int id, Date fecha, double montoTotal, String cliente, Byte estado, int idEmpleado, Empleado empleado) {
+    public Venta(int id, Date fecha, double montoTotal, String cliente, Byte estado, int idEmpleado, Empleado empleado, List<DetalleVenta> detalles) {
         this.id = id;
         this.fecha = fecha;
         this.montoTotal = montoTotal;
@@ -31,6 +24,7 @@ public class Venta {
         this.estado = estado;
         this.idEmpleado = idEmpleado;
         this.empleado = empleado;
+        this.detalles = detalles;
     }
 
     public int getId() {
@@ -89,6 +83,14 @@ public class Venta {
         this.empleado = empleado;
     }
 
+    public List<DetalleVenta> getDetalles() {
+        return detalles;
+    }
+
+    public void setZapatillas(List<DetalleVenta> detalles) {
+        this.detalles = detalles;
+    }
+
     @Override
     public String toString() {
         return "Venta{" +
@@ -99,6 +101,7 @@ public class Venta {
                 ", estado=" + estado +
                 ", idEmpleado=" + idEmpleado +
                 ", empleado=" + empleado +
+                ", detalles=" + detalles +
                 '}';
     }
 }

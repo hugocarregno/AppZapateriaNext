@@ -23,53 +23,99 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.example.appzapaterianext.R;
+import com.example.appzapaterianext.models.DetalleVenta;
+import com.example.appzapaterianext.models.Empleado;
 import com.example.appzapaterianext.models.Venta;
+import com.example.appzapaterianext.ui.detalleVenta.ItemDetalleVentaAdapter;
 import com.example.appzapaterianext.ui.inicio.Principal;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class VentaFragment extends Fragment {
     private VentaViewModel ventaViewModel;
     private ArrayAdapter<Venta> adapter;
+
+    private ArrayAdapter<DetalleVenta> adapter2;
     private ListView lvVentas;
-    private Venta ventaF=null;
-    private Button btnNuevo;
+    private ListView lvCarrito;
+    private Venta ventaF;
     private Button btnGuardar;
     private Button btnBorrar;
     private Button btnModificar;
-    private EditText etId, etFecha, etTiempo, etCliente, etMontoTotal;
-    private TextView tvEmpleadoId, tvFecha, tvTiempo, tvDniCliente, tvMontoTotal;
+    private Button btnVenta, btnVaciarCarrito;
+    private EditText etId, etFecha, etTiempo, etCliente, etMontoTotal, etDniCliente;
+    private TextView tvEmpleadoId, tvFecha, tvTiempo, tvDniCliente, tvMontoTotal, tvTotal;
     private SharedPreferences sp;
     private Calendar fechaElegida;
     private int year, month, day, hour, minute, second;
+    private ArrayList<DetalleVenta> carrito;
+    private List<DetalleVenta> listadoDetalle;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_venta, container, false);
         lvVentas= root.findViewById(R.id.listadoVentas);
-        btnNuevo= root.findViewById(R.id.btnNuevo);
         btnGuardar= root.findViewById(R.id.btnGuardar);
         btnBorrar= root.findViewById(R.id.btnBorrar);
         btnModificar= root.findViewById(R.id.btnModificar);
+        btnVenta = root.findViewById(R.id.btnVenta);
+        btnVaciarCarrito = root.findViewById(R.id.btnVaciarCarrito);
         etId= root.findViewById(R.id.etId);
         etFecha= root.findViewById(R.id.etFecha);
         etTiempo= root.findViewById(R.id.etTiempo);
         etCliente= root.findViewById(R.id.etCliente);
         etMontoTotal= root.findViewById(R.id.etMontoTotal);
+        etDniCliente = root.findViewById(R.id.etDniCliente);
         tvEmpleadoId= root.findViewById(R.id.tvEmpleadoId);
         tvFecha= root.findViewById(R.id.tvFecha);
         tvTiempo= root.findViewById(R.id.tvTiempo);
         tvDniCliente= root.findViewById(R.id.tvCliente);
         tvMontoTotal= root.findViewById(R.id.tvMontoTotal);
-
-        btnNuevo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.nav_zapatilla);
+        tvTotal = root.findViewById(R.id.tvTotal);
+        lvCarrito= root.findViewById(R.id.listadoCarrito);
+        carrito = ((Principal) getActivity()).getArrayList("carro");
+        if(carrito==null){
+            Toast.makeText(getContext(), "No tienes nada", Toast.LENGTH_LONG).show();
+            btnVenta.setVisibility(View.GONE);
+            etDniCliente.setVisibility(View.GONE);
+            tvTotal.setVisibility(View.GONE);
+        }else{
+            lvVentas.setVisibility(View.GONE);
+            listadoDetalle = new ArrayList<>();
+            for (DetalleVenta detalleVenta: carrito) {
+                listadoDetalle.add(detalleVenta);
             }
-        });
+            ventaF = new Venta();
+            ventaF.setZapatillas(listadoDetalle);
+            adapter2 = new ItemDetalleVentaAdapter(getContext(), R.layout.item_zapatilla, ventaF.getDetalles(), getLayoutInflater());
+            lvCarrito.setAdapter(adapter2);
+
+            Empleado empleado = new Empleado();
+            sp = getContext().getSharedPreferences("empleado",0);
+            empleado.setId(sp.getInt("id",-1));
+            empleado.setDni(sp.getString("dni","-1"));
+            empleado.setApellido(sp.getString("apellido","-1"));
+            empleado.setNombre(sp.getString("nombre","-1"));
+            empleado.setEmail(sp.getString("email","-1"));
+            empleado.setClave(sp.getString("password","-1"));
+            empleado.setEstado(Byte.parseByte(sp.getString("estado", "-1")));
+
+            ventaF.setEstado((byte) 1);
+            ventaF.setFecha(new Date());
+            ventaF.setIdEmpleado(empleado.getId());
+            ventaF.setEmpleado(empleado);
+            ventaF.setMontoTotal(0.0);
+            for(DetalleVenta dv: carrito){
+                ventaF.setMontoTotal(ventaF.getMontoTotal()+dv.getZapatilla().getPrecio()*dv.getCantidad());
+            }
+            tvTotal.setText('$'+String.valueOf(ventaF.getMontoTotal()));
+            btnVaciarCarrito.setVisibility(View.VISIBLE);
+
+        }
 
         btnBorrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +133,6 @@ public class VentaFragment extends Fragment {
                 tvTiempo.setVisibility(View.VISIBLE);
                 tvDniCliente.setVisibility(View.VISIBLE);
                 tvMontoTotal.setVisibility(View.VISIBLE);
-                btnNuevo.setVisibility(v.GONE);
                 btnGuardar.setVisibility(v.VISIBLE);
                 lvVentas.setVisibility(v.GONE);
                 ((Principal) getActivity()).setActionBarTitle("Editar Venta");
@@ -151,7 +196,6 @@ public class VentaFragment extends Fragment {
                         ventaViewModel.actualizarVentaVM(ventaF);
 
                         btnGuardar.setVisibility(v.GONE);
-                        btnNuevo.setVisibility(v.VISIBLE);
                         etId.setVisibility(v.GONE);
                         etFecha.setVisibility(v.GONE);
                         etTiempo.setVisibility(v.GONE);
@@ -202,6 +246,38 @@ public class VentaFragment extends Fragment {
                     }
                 },hour,minute,true);
                 timePickerDialog.show();
+            }
+        });
+
+        btnVenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(etDniCliente.getText().toString().length()==8){
+                    ventaF.setCliente(etDniCliente.getText().toString());
+                    //listadoDetalle = new ArrayList<>();
+                    //for (DetalleVenta detalleVenta: carrito) {
+                    //    detalleVenta.getZapatilla().setStock(detalleVenta.getZapatilla().getStock()-detalleVenta.getCantidad());
+                    //    listadoDetalle.add(detalleVenta);
+                   // }
+                  //  venta.setZapatillas(listadoDetalle);
+                    ventaViewModel.altaVentaVM(ventaF);
+                    //detalleVentaViewModel.altaDetalleVentasVM(listadoDetalle);
+                    //eliminar sp
+                    carrito=null;
+                    ((Principal) getActivity()).saveArrayList(carrito, "carro");
+                    Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.nav_venta);
+                }else{
+                    Toast.makeText(getContext(), "Ingrese DNI del cliente",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        btnVaciarCarrito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((Principal) getContext()).saveArrayList(null,"carro");
+                btnVaciarCarrito.setVisibility(View.GONE);
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.nav_venta);
             }
         });
 

@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.appzapaterianext.models.Venta;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -90,7 +91,7 @@ public class Principal extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_carrito:
-                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_detalleVenta);
+                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_venta);
                 return true;
             case R.id.action_cerrar:
                 Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.nav_cerrarSesion);
@@ -102,6 +103,7 @@ public class Principal extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
     public void saveArrayList(ArrayList<DetalleVenta> list, String key){
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("carro",0);
