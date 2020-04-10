@@ -83,6 +83,7 @@ public class VentaViewModel extends AndroidViewModel {
         altaVenta.enqueue(new Callback<Venta>() {
             @Override
             public void onResponse(Call<Venta> call, Response<Venta> response) {
+
                 if (response.isSuccessful()) {
                     Toast.makeText(context, "Se dio de alta una Venta", Toast.LENGTH_LONG).show();
                 }

@@ -78,11 +78,16 @@ public class VentaFragment extends Fragment {
         tvTotal = root.findViewById(R.id.tvTotal);
         lvCarrito= root.findViewById(R.id.listadoCarrito);
         carrito = ((Principal) getActivity()).getArrayList("carro");
+
         if(carrito==null){
-            Toast.makeText(getContext(), "No tienes nada", Toast.LENGTH_LONG).show();
+             //Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.nav_detalleVenta);
+             Toast.makeText(getContext(), "Esta vacio el carrito", Toast.LENGTH_LONG).show();
+
+            //ir a zapatillas o crear tablayout de ventas(proximamente)
             btnVenta.setVisibility(View.GONE);
             etDniCliente.setVisibility(View.GONE);
             tvTotal.setVisibility(View.GONE);
+            lvVentas.setVisibility(View.GONE);
         }else{
             lvVentas.setVisibility(View.GONE);
             listadoDetalle = new ArrayList<>();
@@ -90,7 +95,7 @@ public class VentaFragment extends Fragment {
                 listadoDetalle.add(detalleVenta);
             }
             ventaF = new Venta();
-            ventaF.setZapatillas(listadoDetalle);
+            ventaF.setDetalles(listadoDetalle);
             adapter2 = new ItemDetalleVentaAdapter(getContext(), R.layout.item_zapatilla, ventaF.getDetalles(), getLayoutInflater());
             lvCarrito.setAdapter(adapter2);
 

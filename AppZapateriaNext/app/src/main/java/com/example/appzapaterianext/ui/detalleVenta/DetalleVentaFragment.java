@@ -56,11 +56,11 @@ public class DetalleVentaFragment extends Fragment {
         tvTotal = root.findViewById(R.id.tvTotal);
         lvCarrito= root.findViewById(R.id.listadoCarrito);
         carrito = ((Principal) getActivity()).getArrayList("carro");
+
         if(carrito==null){
-            Toast.makeText(getContext(), "No tienes nada", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "No tienes nada en el carrito", Toast.LENGTH_LONG).show();
             btnVenta.setVisibility(View.GONE);
             etDniCliente.setVisibility(View.GONE);
-            tvTotal.setVisibility(View.GONE);
         }else{
             listadoDetalle = new ArrayList<>();
             for (DetalleVenta detalleVenta: carrito) {
@@ -106,7 +106,7 @@ public class DetalleVentaFragment extends Fragment {
                         detalleVenta.getZapatilla().setStock(detalleVenta.getZapatilla().getStock()-detalleVenta.getCantidad());
                         listadoDetalle.add(detalleVenta);
                     }
-                    venta.setZapatillas(listadoDetalle);
+                    venta.setDetalles(listadoDetalle);
                     //ventaViewModel.altaVentaVM(venta);
                     //detalleVentaViewModel.altaDetalleVentasVM(listadoDetalle);
                     //eliminar sp

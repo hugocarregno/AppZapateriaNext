@@ -11,7 +11,8 @@
         <item
             android:id="@+id/nav_detalleVenta"
             android:icon="@drawable/ic_cart"
-            android:title="@string/menu_detalleVenta" />
+            android:title="@string/menu_detalleVenta"
+            android:visible="false"/>
         <item
             android:id="@+id/nav_venta"
             android:icon="@drawable/ic_sales"
